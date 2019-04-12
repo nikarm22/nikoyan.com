@@ -10,7 +10,7 @@ jobs:
   include:
     - stage: test
       name: "Unit tests"
-      script: ./unit-test
+      script: yarn test
     - stage: build-and-deploy
       name: "Build and Deploy"
       script: yarn build && echo 'Deploy placeholder'
