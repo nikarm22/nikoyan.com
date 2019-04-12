@@ -11,20 +11,9 @@ jobs:
     - stage: test
       name: "Unit tests"
       script: ./unit-test
-    - stage: build
-      script: ./build
-    - stage: deploy
-      script: ./deploy
+    - stage: build-and-deploy
+      name: "Build and Deploy"
+      script: yarn build && echo 'Deploy placeholder'
 stages:
   - test
-  - build
-  - deploy
-
-unit-test:
-  script: yarn test
-
-build:
-  script: yarn build
-
-deploy:
-  script: echo 'Deploy :)'
+  - build-and-deploy
