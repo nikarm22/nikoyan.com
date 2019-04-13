@@ -19,4 +19,4 @@ stages:
 - deploy
 before_install:
 - openssl aes-256-cbc -K $encrypted_7e8b61df6307_key -iv $encrypted_7e8b61df6307_iv
-  -in nikoyan-rsa.enc -out nikoyan-rsa -d
+  -in .travis/nikoyan-rsa.enc -out nikoyan-rsa -d
