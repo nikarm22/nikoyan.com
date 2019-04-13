@@ -23,6 +23,6 @@ ssh $APP_USER@$HOST -p $SSH_PORT <<EOF
   cd $DEPLOY_DIR;
   yarn;
   yarn build;
-  rm -rf ../root
-  cp -r ./build/* ../root
+  rm -rf ../root/*
+  cp -r ./build/* ../root/
 EOF
