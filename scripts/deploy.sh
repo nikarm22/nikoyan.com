@@ -10,7 +10,7 @@ chmod 600 .travis/nikoyan-rsa # Allow read access to the private key
 ssh-add .travis/nikoyan-rsa # Add the private key to SSH
 
 # Skip unkown host promt
-echo "Host $HOST
+echo "Host $ADDRESS
   StrictHostKeyChecking no
   UserKnownHostsFile=/dev/null" > ~/.ssh/config
 
