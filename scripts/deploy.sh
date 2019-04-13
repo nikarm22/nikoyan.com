@@ -9,7 +9,10 @@ eval "$(ssh-agent -s)" # Start ssh-agent cache
 chmod 600 .travis/nikoyan-rsa # Allow read access to the private key
 ssh-add .travis/nikoyan-rsa # Add the private key to SSH
 
-ssh -o "StrictHostKeyChecking no" $USER@$ADDRESS #Skip known_hosts promt
+# Skip unkown host promt
+echo "Host $HOST
+  StrictHostKeyChecking no
+  UserKnownHostsFile=/dev/null" > ~/.ssh/config
 
 git config --global push.default matching
 git remote add deploy ssh://$USER@$ADDRESS:$PORT$DEPLOY_DIR
