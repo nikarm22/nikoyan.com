@@ -10,16 +10,19 @@ chmod 600 .travis/nikoyan-rsa # Allow read access to the private key
 ssh-add .travis/nikoyan-rsa # Add the private key to SSH
 
 # Skip unkown host promt
-echo "Host $ADDRESS
+echo "Host $HOST
   StrictHostKeyChecking no
   UserKnownHostsFile=/dev/null" > ~/.ssh/config
 
 git config --global push.default matching
-git remote add deploy ssh://$USER@$ADDRESS:$PORT$DEPLOY_DIR
+git remote add deploy ssh://$GIT_USER@$HOST:$SSH_PORT$DEPLOY_DIR
 git push deploy master
 
 # Skip this command if you don't need to execute any additional commands after deploying.
-# ssh apps@$IP -p $PORT <<EOF
-#   cd $DEPLOY_DIR
-#   crystal build --release --no-debug index.cr # Change to whatever commands you need!
-# EOF
+ssh $APP_USER@$HOST -p $SSH_PORT <<EOF
+  cd $DEPLOY_DIR;
+  yarn;
+  yarn build;
+  rm -rf ../root
+  cp -r ./build/* ../root
+EOF
