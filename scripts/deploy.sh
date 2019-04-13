@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Load up .env
+set -o allexport
+[[ -f .env ]] && source .env
+set +o allexport
+
 eval "$(ssh-agent -s)" # Start ssh-agent cache
 chmod 600 .travis/nikoyan-rsa # Allow read access to the private key
 ssh-add .travis/nikoyan-rsa # Add the private key to SSH
