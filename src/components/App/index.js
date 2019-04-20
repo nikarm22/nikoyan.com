@@ -7,7 +7,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          Site is under construction.
+          Site is under construction. Thank you.
         </header>
       </div>
     );
